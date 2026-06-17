@@ -2,14 +2,13 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, CreditCard, QrCode, Banknote, Loader2, Check } from "lucide-react";
 import { formatBRL, useCart } from "@/lib/cart-context";
-import { RulesBadge } from "@/components/RulesBadge";
+
+type Method = "pix" | "cartao" | "dinheiro";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({ meta: [{ title: "Pagamento · Barraca do Milho" }] }),
   component: Checkout,
 });
-
-type Method = "pix" | "cartao" | "dinheiro";
 
 function Checkout() {
   const { total, lines, clear } = useCart();
@@ -148,11 +147,6 @@ function Checkout() {
           </button>
         </div>
       </div>
-
-      <RulesBadge
-        applied={[3, 4, 5, 6, 7]}
-        note="Etapas claras (início-meio-fim), validação de campo, opção cancelar, feedback de processamento."
-      />
     </main>
   );
 }
@@ -217,5 +211,3 @@ function Stepper({ current }: { current: 1 | 2 | 3 }) {
     </ol>
   );
 }
-
-export { Checkout };

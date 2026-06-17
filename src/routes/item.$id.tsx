@@ -3,7 +3,6 @@ import { useState } from "react";
 import { ArrowLeft, Minus, Plus, Check } from "lucide-react";
 import { MENU } from "@/lib/menu-data";
 import { formatBRL, useCart } from "@/lib/cart-context";
-import { RulesBadge } from "@/components/RulesBadge";
 
 export const Route = createFileRoute("/item/$id")({
   component: ItemDetail,
@@ -128,11 +127,6 @@ function ItemDetail() {
           )}
         </div>
       </div>
-
-      <RulesBadge
-        applied={[2, 3, 5, 7, 8]}
-        note="Quantidade com limites (prevenção), feedback imediato após adicionar, opções pré-selecionadas reduzem memória e dão controle."
-      />
     </main>
   );
 }

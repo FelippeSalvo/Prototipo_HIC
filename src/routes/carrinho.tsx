@@ -2,8 +2,6 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Minus, Plus, Trash2, Undo2, ArrowRight, ShoppingBasket } from "lucide-react";
 import { formatBRL, useCart } from "@/lib/cart-context";
-import { RulesBadge } from "@/components/RulesBadge";
-
 export const Route = createFileRoute("/carrinho")({
   head: () => ({ meta: [{ title: "Carrinho · Barraca do Milho" }] }),
   component: Carrinho,
@@ -42,7 +40,6 @@ function Carrinho() {
         >
           Ver cardápio <ArrowRight className="h-4 w-4" />
         </Link>
-        <RulesBadge applied={[3, 4]} note="Estado vazio comunica claramente onde o usuário está e o próximo passo." />
       </main>
     );
   }
@@ -174,11 +171,6 @@ function Carrinho() {
           </button>
         </div>
       )}
-
-      <RulesBadge
-        applied={[1, 2, 3, 5, 6, 7]}
-        note="Confirmação antes de remover (prevenção), botão Desfazer global, controle total de quantidade e feedback claro."
-      />
     </main>
   );
 }

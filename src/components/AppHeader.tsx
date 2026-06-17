@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ShoppingBasket, BookOpenCheck, Home } from "lucide-react";
+import { ShoppingBasket, Home } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 
 export function AppHeader() {
@@ -37,7 +37,6 @@ export function AppHeader() {
         <nav className="hidden sm:flex items-center gap-1">
           <NavLink to="/"><Home className="inline h-4 w-4 mr-1" />Início</NavLink>
           <NavLink to="/cardapio">Cardápio</NavLink>
-          <NavLink to="/regras"><BookOpenCheck className="inline h-4 w-4 mr-1" />8 Regras</NavLink>
         </nav>
         <Link
           to="/carrinho"

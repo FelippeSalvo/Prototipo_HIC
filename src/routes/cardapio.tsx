@@ -3,8 +3,6 @@ import { useMemo, useState } from "react";
 import { Search, History } from "lucide-react";
 import { CATEGORIES, MENU } from "@/lib/menu-data";
 import { formatBRL, useCart } from "@/lib/cart-context";
-import { RulesBadge } from "@/components/RulesBadge";
-
 export const Route = createFileRoute("/cardapio")({
   head: () => ({
     meta: [
@@ -115,11 +113,6 @@ function Cardapio() {
           </li>
         )}
       </ul>
-
-      <RulesBadge
-        applied={[1, 2, 7, 8]}
-        note="Categorias e busca dão controle ao usuário; pedidos recentes reduzem a carga de memória; layout consistente acelera escolhas."
-      />
     </main>
   );
 }

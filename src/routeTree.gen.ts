@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RegrasRouteImport } from './routes/regras'
 import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CarrinhoRouteImport } from './routes/carrinho'
@@ -17,11 +16,6 @@ import { Route as CardapioRouteImport } from './routes/cardapio'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ItemIdRouteImport } from './routes/item.$id'
 
-const RegrasRoute = RegrasRouteImport.update({
-  id: '/regras',
-  path: '/regras',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PedidoRoute = PedidoRouteImport.update({
   id: '/pedido',
   path: '/pedido',
@@ -59,7 +53,6 @@ export interface FileRoutesByFullPath {
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
   '/pedido': typeof PedidoRoute
-  '/regras': typeof RegrasRoute
   '/item/$id': typeof ItemIdRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +61,6 @@ export interface FileRoutesByTo {
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
   '/pedido': typeof PedidoRoute
-  '/regras': typeof RegrasRoute
   '/item/$id': typeof ItemIdRoute
 }
 export interface FileRoutesById {
@@ -78,7 +70,6 @@ export interface FileRoutesById {
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
   '/pedido': typeof PedidoRoute
-  '/regras': typeof RegrasRoute
   '/item/$id': typeof ItemIdRoute
 }
 export interface FileRouteTypes {
@@ -89,17 +80,9 @@ export interface FileRouteTypes {
     | '/carrinho'
     | '/checkout'
     | '/pedido'
-    | '/regras'
     | '/item/$id'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/cardapio'
-    | '/carrinho'
-    | '/checkout'
-    | '/pedido'
-    | '/regras'
-    | '/item/$id'
+  to: '/' | '/cardapio' | '/carrinho' | '/checkout' | '/pedido' | '/item/$id'
   id:
     | '__root__'
     | '/'
@@ -107,7 +90,6 @@ export interface FileRouteTypes {
     | '/carrinho'
     | '/checkout'
     | '/pedido'
-    | '/regras'
     | '/item/$id'
   fileRoutesById: FileRoutesById
 }
@@ -117,19 +99,11 @@ export interface RootRouteChildren {
   CarrinhoRoute: typeof CarrinhoRoute
   CheckoutRoute: typeof CheckoutRoute
   PedidoRoute: typeof PedidoRoute
-  RegrasRoute: typeof RegrasRoute
   ItemIdRoute: typeof ItemIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/regras': {
-      id: '/regras'
-      path: '/regras'
-      fullPath: '/regras'
-      preLoaderRoute: typeof RegrasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/pedido': {
       id: '/pedido'
       path: '/pedido'
@@ -181,9 +155,18 @@ const rootRouteChildren: RootRouteChildren = {
   CarrinhoRoute: CarrinhoRoute,
   CheckoutRoute: CheckoutRoute,
   PedidoRoute: PedidoRoute,
-  RegrasRoute: RegrasRoute,
   ItemIdRoute: ItemIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -1,8 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, ShieldCheck, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-milho.jpg";
-import { RulesBadge } from "@/components/RulesBadge";
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -38,12 +36,6 @@ function Index() {
               Ver cardápio
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link
-              to="/regras"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-3 font-semibold hover:bg-muted transition"
-            >
-              As 8 regras de ouro
-            </Link>
           </div>
           <div className="grid grid-cols-3 gap-3 pt-4 max-w-md">
             <Feature icon={<Clock className="h-4 w-4" />} label="Sem fila" />
@@ -63,11 +55,6 @@ function Index() {
           />
         </div>
       </section>
-
-      <RulesBadge
-        applied={[1, 4, 8]}
-        note="Tela inicial define identidade visual (consistência), comunica início do diálogo e oferece atalho ao histórico."
-      />
     </main>
   );
 }

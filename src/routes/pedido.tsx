@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Check, Clock, ChefHat, Bell, PartyPopper } from "lucide-react";
 import { z } from "zod";
-import { RulesBadge } from "@/components/RulesBadge";
 
 const search = z.object({
   id: z.string().default("ABCDE"),
@@ -104,11 +103,6 @@ function Pedido() {
           Voltar ao início
         </Link>
       </div>
-
-      <RulesBadge
-        applied={[3, 4, 8]}
-        note="Tela final do diálogo: mensagem clara de sucesso, progresso visível e código do pedido salvo (sem precisar memorizar)."
-      />
     </main>
   );
 }
